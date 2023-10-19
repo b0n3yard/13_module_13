@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "npm i dotenv express mysql2 sequelize && npm i nodemon -D && cd db && node db.js ",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "watch": "nodemon server.js",
     "seed": "node seeds/index.js"
   },
