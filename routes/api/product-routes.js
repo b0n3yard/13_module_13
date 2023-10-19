@@ -8,7 +8,6 @@ router.get('/', async(req, res) => {
   const cat = await Product.findAll({
     raw:true
   })
-  res.send(cat)
   // find all products
   // be sure to include its associated Category and Tag data
 });
