@@ -7,33 +7,46 @@ const temparry3= []
 // The `/api/products` endpoint
 
 // get all products
+// be sure to include its associated Category and Tag data
 router.get('/', async(req, res) => {
-  const cat = await Product.findAll({
-    raw:true
+  const products = await Product.findAll({
+    include:[
+      Category,Tag
+    ]
   }) 
-  cat.forEach(async(cat, x)=>{
-    const ctgry = ProductTag.findAll({
-      where:{
-        product_id: x +1
-      },
-      raw:true
-    }).then((data)=>{
-      // Tag.tags = data
-      data.forEach((data, x)=>{
-        console.log(data)
+  res.send(products)
+  // cat.forEach(async(cat, x)=>{
+  //   const ctgry = ProductTag.findAll({
+  //     where:{
+  //       product_id: x +1
+  //     },
+  //     raw:true
+  //   }).then((data)=>{
+  //     // Tag.tags = data
+  //     // console.log(data)
+  //     data.forEach(async(data, x)=>{
+  //       const tags = await Tag.findAll({
+  //         where:{
+  //           id: data.tag_id
+  //         },
+  //         raw:true
+  //       }).then((nwdata)=>{
+  //         // console.log(nwdata)
+  //         const tagid = Object.assign(cat,nwdata)
+  //         temparry[x] = tagid
+  //         console.log(temparry[x])
+          
+  //         temparry2.push(tagid)
+  //       })
 
-      })
-      const tagid = Object.assign(cat,data)
-      temparry[x] = tagid
-      // console.log(Tag)
-    })
-    temparry2.push(ctgry)
-  })
-  await Promise.all(temparry2)
-  // console.log(cat)
-  res.send(cat)
+  //     })
+  //     // console.log(Tag)
+  //   })
+  // })
+  // await Promise.all(temparry2)
+  // // console.log(cat)
+  // res.send(cat)
   // find all products
-  // be sure to include its associated Category and Tag data
 });
 
 // get one product

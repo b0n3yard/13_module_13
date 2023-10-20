@@ -9,31 +9,33 @@ const temparry3= []
 
 router.get('/', async (req, res) => {
   const cat = await Category.findAll({
-    raw:true
+    include: Product
   })
-  const cata =await Product.findAll({
-    raw:true
-  })
-  cat.forEach(async (cat,x) =>{
-   
-   const ctgry = Product.findAll({
-    where:{
-      category_id: x +1
-    },
-    raw:true
-   }).then((data)=>{
-    const cato = Object.assign(cat,data)
-    temparry[x] = cato
-    // console.table(temparry[x])
-   })
-    temparry2.push(ctgry)
-    // console.table(temparry[x])
-  })
-  await Promise.all(temparry2)
 
   res.send(cat)
+  // const cata =await Product.findAll({
+  //   raw:true
+  // })
+  // cat.forEach(async (cat,x) =>{
+   
+  //  const ctgry = Product.findAll({
+  //   where:{
+  //     category_id: x +1
+  //   },
+  //   raw:true
+  //  }).then((data)=>{
+  //   const cato = Object.assign(cat,data)
+  //   temparry[x] = cato
+  //   // console.table(temparry[x])
+  //  })
+  //   temparry2.push(ctgry)
+  //   // console.table(temparry[x])
+  // })
+  // await Promise.all(temparry2)
+
+  // res.send(cat)
   // res.send(cataa)
-  console.log(temparry)
+  // console.log(temparry)
   // find all categories
   // be sure to include its associated Products
 });
