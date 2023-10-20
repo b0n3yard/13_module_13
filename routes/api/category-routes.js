@@ -4,6 +4,7 @@ const temparry= []
 const temparry2= []
 const temparry3= []
 
+
 // The `/api/categories` endpoint
 
 router.get('/', async (req, res) => {
@@ -15,25 +16,24 @@ router.get('/', async (req, res) => {
   })
   cat.forEach(async (cat,x) =>{
    
-    // console.log(cat)
-    // console.log(cata[x].category_id)
-   
-    // temparry2[x] = cat
-    // temparry3[x] = temparry2[x] +temparry[x]
-    // console.log(temparry3[x])
-    temparry[x] += await Product.findAll({
-      where:{
-        category_id: x
-      },
-      raw:true
-    })
-    // temparry[x] += cats[x]
+   const ctgry = Product.findAll({
+    where:{
+      category_id: x +1
+    },
+    raw:true
+   }).then((data)=>{
+    const cato = Object.assign(cat,data)
+    temparry[x] = cato
+    // console.table(temparry[x])
+   })
+    temparry2.push(ctgry)
+    // console.table(temparry[x])
   })
-  console.log(temparry)
-  
+  await Promise.all(temparry2)
+
   res.send(cat)
   // res.send(cataa)
-  // console.log(temparry)
+  console.log(temparry)
   // find all categories
   // be sure to include its associated Products
 });
@@ -50,11 +50,11 @@ router.get('/:id', async (req, res) => {
     },
     raw:true
   })
-  temparry2[x] = cata[x]
-
   // console.log(cata)
-  cat[0] += cata[0]
-  res.send(cat)
+const cato = Object.assign(cat,cata)
+  console.log(cato)
+  // cat[hi] += cata[hi]
+  res.send(cato)
   // find one category by its `id` value
   // be sure to include its associated Products
 });

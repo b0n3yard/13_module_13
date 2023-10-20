@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
+const temparry= []
+const temparry2= []
+const temparry3= []
 
 // The `/api/products` endpoint
 
@@ -7,7 +10,28 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async(req, res) => {
   const cat = await Product.findAll({
     raw:true
+  }) 
+  cat.forEach(async(cat, x)=>{
+    const ctgry = ProductTag.findAll({
+      where:{
+        product_id: x +1
+      },
+      raw:true
+    }).then((data)=>{
+      // Tag.tags = data
+      data.forEach((data, x)=>{
+        console.log(data)
+
+      })
+      const tagid = Object.assign(cat,data)
+      temparry[x] = tagid
+      // console.log(Tag)
+    })
+    temparry2.push(ctgry)
   })
+  await Promise.all(temparry2)
+  // console.log(cat)
+  res.send(cat)
   // find all products
   // be sure to include its associated Category and Tag data
 });
