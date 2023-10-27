@@ -44,33 +44,46 @@ router.get('/:id', async (req, res) => {
   const hi = req.params.id
  
   const cat = await Category.findByPk(hi,{
-    raw:true
+    include: Product
   })
-  const cata =await Product.findAll({
-    where:{
-      categoryId: hi
-    },
-    raw:true
-  })
-  // console.log(cata)
-const cato = Object.assign(cat,cata)
-  console.log(cato)
+//   const cata =await Product.findAll({
+//     where:{
+//       categoryId: hi
+//     },
+//     raw:true
+//   })
+//   // console.log(cata)
+// const cato = Object.assign(cat,cata)
+//   console.log(cato)
   // cat[hi] += cata[hi]
-  res.send(cato)
+  res.send(cat)
   // find one category by its `id` value
   // be sure to include its associated Products
 });
 
 router.post('/', (req, res) => {
   // create a new category
-  Category.create()
+  Category.create(req.body)
+  res.send('category created')
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
+  await Category.update(req.body,{
+    where: {
+      id: req.params.id
+    }
+  })
+  res.send('category updated')
   // update a category by its `id` value
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
+  const hi = req.params.id
+  await Category.destroy({
+    where:{
+      id: hi
+    }
+  })
   // delete a category by its `id` value
 });
 

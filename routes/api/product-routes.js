@@ -54,7 +54,9 @@ router.get('/:id', async (req, res) => {
   const hi = req.params.id
  
   const cat = await Product.findByPk(hi,{
-    raw:true
+    include:[
+      Category,Tag
+    ]
   })
   res.send(cat)
   // find a single product by its `id`
@@ -138,7 +140,14 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
+  const hi = req.params.id
+  await Product.destroy({
+    where:{
+      id: hi
+    }
+  })
+  res.send('product destroyed')
   // delete one product by its `id` value
 });
 
