@@ -84,6 +84,7 @@ router.delete('/:id', async (req, res) => {
       id: hi
     }
   })
+  res.send('category destroyed')
   // delete a category by its `id` value
 });
 
