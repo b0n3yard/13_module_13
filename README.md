@@ -20,7 +20,7 @@ https://github.com/b0n3yard/e-commerce_site_backend/assets/6476766/9dbf2839-2b5b
 
 
 <video width='320' height = '240' controls>
-        <source src = './module_13_vscode.mp4' type = 'video/mp4'>
+        <source src = './e_commerce_backend.mp4' type = 'video/mp4'>
     </video>
     <br>
 insomnia stuff
