@@ -16,7 +16,11 @@ to install this project
 
 setting up the database and seeding
 
-https://github.com/b0n3yard/e-commerce_site_backend/assets/6476766/9dbf2839-2b5b-4f14-9380-a6871ec6e800
+
+
+
+https://github.com/b0n3yard/e-commerce_site_backend/assets/6476766/300dedce-33f8-4aa1-8bd5-3d2d55244d94
+
 
 
 <video width='320' height = '240' controls>
@@ -25,7 +29,11 @@ https://github.com/b0n3yard/e-commerce_site_backend/assets/6476766/9dbf2839-2b5b
     <br>
 insomnia stuff
 
-https://github.com/b0n3yard/e-commerce_site_backend/assets/6476766/fa32cd7f-ca4a-4ec0-aa8f-df6b4be4470c
+
+
+
+https://github.com/b0n3yard/e-commerce_site_backend/assets/6476766/a71fd31c-2095-4ac2-9d1b-4622de349c82
+
 
 
 <video width='320' height = '240' controls>
